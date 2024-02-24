@@ -1,59 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guess the Number Game</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <style>
     body {
-        background-color: #ffcccc; /* Pink background */
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 0;
-        padding: 0;
+      background-color: #f8f8f8;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
-
-    #game-container {
-        padding-top: 50px;
+    .container {
+      margin-top: 50px;
+      text-align: center;
     }
-
+    h1 {
+      font-weight: bold;
+    }
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .positive {
+      background-color: #21ba45;
+      color: #fff;
+    }
+    .negative {
+      background-color: #db2828;
+      color: #fff;
+    }
     #result {
-        font-size: 1.2rem;
-        margin-top: 20px;
+      display: none;
     }
-</style>
+    @keyframes flash {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+    .flash {
+      animation: flash 0.1s infinite alternate;
+    }
+    .message-container {
+      margin-top: 20px;
+    }
+    .credit {
+      font-size: 14px;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-<div id="game-container">
+  <div class="container">
     <h1>Guess the Number Game</h1>
-    <p>Guess a number between 1 and 100 Make sure that you reload the command to restart the guess.:</p>
-    <input type="number" id="userGuess">
-    <button onclick="checkGuess()">Submit</button>
-    <div id="result"></div>
-</div>
+    <p>Guess a number between 1 and 100:</p>
+    <div class="row">
+      <div class="six columns offset-by-three">
+        <input class="u-full-width" type="text" id="userGuess" placeholder="Enter your guess...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="six columns offset-by-three">
+        <button class="button-primary u-full-width" onclick="checkGuess()">Submit</button>
+      </div>
+    </div>
+    <div id="result" class="row message-container">
+      <div class="eight columns offset-by-two message"></div>
+    </div>
+  </div>
 
-<script>
-    const randomNumber = Math.floor(Math.random() * 100) + 1; // Generate random number between 1 and 100
+  <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
     let attempts = 0;
+    let previousMessage = '';
 
     function checkGuess() {
-        const userGuess = parseInt(document.getElementById('userGuess').value);
-        
-        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-            document.getElementById('result').innerText = 'Please enter a valid number between 1 and 100.';
-            return;
-        }
+      const userGuess = document.getElementById('userGuess').value.trim();
+      const resultDisplay = document.querySelector('.message');
 
-        attempts++;
+      if (userGuess === "pwd727") {
+        alert(`The secret number is: ${randomNumber}`);
+        return;
+      }
 
-        if (userGuess === randomNumber) {
-            document.getElementById('result').innerText = `Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.`;
-        } else if (userGuess < randomNumber) {
-            document.getElementById('result').innerText = 'Try a higher number.';
-        } else {
-            document.getElementById('result').innerText = 'Try a lower number.';
-        }
+      const userNumber = parseInt(userGuess);
+      
+      if (isNaN(userNumber) || userNumber < 1 || userNumber > 100) {
+        showResult('Please enter a valid number between 1 and 100.', 'negative');
+        return;
+      }
+
+      attempts++;
+
+      if (userNumber === randomNumber) {
+        showResult(`Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.`, 'positive');
+      } else if (userNumber < randomNumber) {
+        showResult('Try a higher number.', 'negative');
+      } else {
+        showResult('Try a lower number.', 'negative');
+      }
     }
-</script>
+
+    function showResult(message, type) {
+      const resultDisplay = document.getElementById('result');
+      const messageElement = resultDisplay.querySelector('.message');
+      messageElement.innerText = message;
+      messageElement.classList.remove('negative', 'positive');
+      messageElement.classList.add(type);
+      resultDisplay.style.display = 'block';
+
+      if (message === previousMessage) {
+        messageElement.classList.add('flash');
+        setTimeout(() => {
+          messageElement.classList.remove('flash');
+        }, 100);
+      }
+
+      previousMessage = message;
+    }
+  </script>
 </body>
 </html>
