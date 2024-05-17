@@ -1,50 +1,73 @@
 <!DOCTYPE html>
-<html>
-  <style>
-    h1 {
-      text-align:center;
-    }
-    body{
-      background-color:black;
-      color:#15ff00;
-      font-size:30px;
-    }
-    p{
-      text-align:center;
-      font-size:20px;
-      color:#15ff00;
-      
-    }
-    
-    button {
-       text-align:center;
-      font-size:20px;
-      color:#15ff00;
-      float:right;
-      background-color:black;
-      border:none;
-      border-radius:50px;
-      cursor:pointer;
-    }
-    
-    button:hover {
-      color:green;
-      font-size:23px;
-    }
-    
-</style>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cool Games</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #282c34;
+      color: #61dafb;
+      text-align: center;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .games-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .game-item {
+      margin: 10px 0;
+    }
+
+    .game-button {
+      padding: 10px 20px;
+      font-size: 20px;
+      color: white;
+      background-color: #0078D7;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .game-button:hover {
+      background-color: #005bb5;
+    }
+  </style>
 </head>
 <body>
-<h1>Welcome</h1>
-  <br>
-  <p>What games do you want to play?</p>
-  <br>
-<a href="https://www.crazygames.com/game/ships-3d" target="_blank">
-  <button>Ships 3D</button>
-    </a>
+  <h1>Welcome to Cool Games!</h1>
+  <p>Check out these awesome games:</p>
+  <ul class="games-list">
+    <li class="game-item">
+      <a href="https://www.crazygames.com/game/ships-3d" target="_blank" class="game-button">Play Ships 3D</a>
+    </li>
+    <br>
+    <li class="game-item">
+      <a href="https://www.crazygames.com/game/krunker-io" target="_blank" class="game-button">Play Krunker.io</a>
+    </li>
+    <br>
+    <li class="game-item">
+      <a href="https://www.crazygames.com/game/slither-io" target="_blank" class="game-button">Play Slither.io</a>
+    </li>
+    <br>
+    <li class="game-item">
+      <a href="https://www.crazygames.com/game/bonk-io" target="_blank" class="game-button">Play Bonk.io</a>
+    </li>
+    <br>
+  </ul>
 </body>
 </html>
