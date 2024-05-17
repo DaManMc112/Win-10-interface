@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>School Learning</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body, html {
       margin: 0;
@@ -33,15 +34,22 @@
       gap: 8px;
       transition: top 0.5s ease;
     }
-    #dropdown-button {
+    #controls-container {
       position: absolute;
       top: 20px;
       right: 20px;
+      display: flex;
+      gap: 8px;
+    }
+    #dropdown-button, #home-button {
       cursor: pointer;
       background-color: #1d4ed8;
       color: white;
       padding: 10px;
       border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
@@ -56,16 +64,26 @@
   <button onclick="openFullscreenIframe()" class="bg-blue-500 text-white p-2 rounded">Go</button>
 </div>
 
-<div id="dropdown-button" onclick="toggleTextboxContainer()">▼</div>
+<div id="controls-container">
+  <div id="home-button" onclick="resetIframe()"><i class="fas fa-home"></i></div>
+  <div id="dropdown-button" onclick="toggleTextboxContainer()">▼</div>
+</div>
 
 <script>
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = document.getElementById('fullscreen-iframe');
   const textboxContainer = document.getElementById('textbox-container');
   const dropdownButton = document.getElementById('dropdown-button');
+  const urlInput = document.getElementById('urlInput');
   
+  urlInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      openFullscreenIframe();
+    }
+  });
+
   function openFullscreenIframe() {
-    const urlCode = document.getElementById('urlInput').value;
+    const urlCode = urlInput.value;
     const url = getUrlFromCode(urlCode);
     
     if (url) {
@@ -149,6 +167,12 @@
       textboxContainer.style.top = '20px';
       dropdownButton.textContent = '▼';
     }
+  }
+
+  function resetIframe() {
+    iframe.src = '';
+    toggleTextboxContainer(); // Show the textbox container
+    urlInput.value = ''; // Clear the input field
   }
 </script>
 
