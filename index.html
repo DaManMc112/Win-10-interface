@@ -31,6 +31,17 @@
       left: 20px;
       display: flex;
       gap: 8px;
+      transition: top 0.5s ease;
+    }
+    #dropdown-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      background-color: #1d4ed8;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -45,9 +56,13 @@
   <button onclick="openFullscreenIframe()" class="bg-blue-500 text-white p-2 rounded">Go</button>
 </div>
 
+<div id="dropdown-button" onclick="toggleTextboxContainer()">▼</div>
+
 <script>
   const iframeContainer = document.getElementById('iframe-container');
   const iframe = document.getElementById('fullscreen-iframe');
+  const textboxContainer = document.getElementById('textbox-container');
+  const dropdownButton = document.getElementById('dropdown-button');
   
   function openFullscreenIframe() {
     const urlCode = document.getElementById('urlInput').value;
@@ -55,7 +70,7 @@
     
     if (url) {
       iframe.src = url;
-      toggleFullscreen();
+      toggleTextboxContainer(); // Hide the textbox container
     } else {
       alert('Invalid URL code');
     }
@@ -67,76 +82,72 @@
         return 'https://math.bidoof.app/skribblbrowser.html';
       case 'google':
         return 'https://usemetallic.com/';
-          case 'silly games':
+      case 'silly games':
         return 'https://developmentbuild.herokuapp.com/service/hvtrs8%2F-cjavgctg.ci-/'; 
-         case 'black':
+      case 'black':
         return 'https://05konz.github.io/Blooket-Cheats/';
-          case 'silly':
+      case 'silly':
         return 'https://classroom.google.com/'; 
-        case 'bloxd':
+      case 'bloxd':
         return 'https://paper-mc.io/bloxdio';
-         case 'math bidoof':
+      case 'math bidoof':
         return 'https://math.bidoof.app';
-         case 'loadbidoofproxy':
+      case 'loadbidoofproxy':
         return 'https://www.proxysite.com';
-        case 'home':
+      case 'home':
         return 'https://win-10-interface2.vercel.app';
-        case 'loadpac-man':
+      case 'loadpac-man':
         return 'https://freepacman.org';
-         case 'loadttgame':
+      case 'loadttgame':
         return 'https://www.rossipotti.de/ausgabe28/tetris/index.html';
-        case 'loadcrazy':
+      case 'loadcrazy':
         return 'https://www.crazygames.com';
-         case 'loadminecraftgame':
+      case 'loadminecraftgame':
         return 'https://eaglercraft.com/mc/1.8.8/';
-          case 'loaddantegame':
+      case 'loaddantegame':
         return 'https://developmentbuild.herokuapp.com/service/hvtrs8%2F-jq11keaoeq.aoo%2Feaoeq%2Ffaltg%2Fknfez.jtol';
-          case 'listofcommands':
+      case 'listofcommands':
         return 'list.html';
-         case 'roblox':
+      case 'roblox':
         return 'https://www.gamenora.com/game/roblox/';
-          case 'mtw':
+      case 'mtw':
         return 'madewebsite.html';
-        case 'chat':
+      case 'chat':
         return 'chat.html';
-         case '1v1.lol':
+      case '1v1.lol':
         return 'https://1v1lol.me';
-         case 'Roblox.made':
+      case 'Roblox.made':
         return 'Roblox.html';
-          case 'guess.':
+      case 'guess.':
         return 'guess.html';
-         case 'loadwinproxy':
+      case 'loadwinproxy':
         return 'https://522f3976-9e1e-4683-8d1c-137a4f560eae-00-3anuj0qixfk5d.picard.replit.dev/';
-          case 'loadtgame':
+      case 'loadtgame':
         return 'https://freetennis.org';
-         case 'IP':
+      case 'IP':
         return 'IP.html';
-         case 'fortnite':
+      case 'fortnite':
         return 'Fortnite.new.html';
-         case 'youtube':
-        return 'https://codesandbox.io/p/sandbox/hadfull-website-ddfgsr?layout=%257B%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522rootPanelGroup%2522%253A%257B%2522direction%2522%253A%2522horizontal%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522id%2522%253A%2522ROOT_LAYOUT%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522cltgkb84r00063j6gthg45laz%2522%252C%2522sizes%2522%253A%255B70%252C30%255D%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522EDITOR%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522id%2522%253A%2522cltgkb84r00023j6gcm2kkjuq%2522%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522SHELLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522id%2522%253A%2522cltgkb84r00033j6gpegl0piy%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522DEVTOOLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522id%2522%253A%2522cltgkb84r00053j6ggulbcsf9%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%255D%252C%2522sizes%2522%253A%255B50%252C50%255D%257D%252C%2522tabbedPanels%2522%253A%257B%2522cltgkb84r00023j6gcm2kkjuq%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522cltgkb84r00013j6g9miampb9%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522FILE%2522%252C%2522filepath%2522%253A%2522%252Findex.html%2522%257D%255D%252C%2522id%2522%253A%2522cltgkb84r00023j6gcm2kkjuq%2522%252C%2522activeTabId%2522%253A%2522cltgkb84r00013j6g9miampb9%2522%257D%252C%2522cltgkb84r00053j6ggulbcsf9%2522%253A%257B%2522id%2522%253A%2522cltgkb84r00053j6ggulbcsf9%2522%252C%2522activeTabId%2522%253A%2522cltglhma801ua3j6gipl7tcvr%2522%252C%2522tabs%2522%253A%255B%257B%2522type%2522%253A%2522UNASSIGNED_PORT%2522%252C%2522port%2522%253A0%252C%2522id%2522%253A%2522cltglhma801ua3j6gipl7tcvr%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522path%2522%253A%2522%252F%2522%257D%255D%257D%252C%2522cltgkb84r00033j6gpegl0piy%2522%253A%257B%2522tabs%2522%253A%255B%255D%252C%2522id%2522%253A%2522cltgkb84r00033j6gpegl0piy%2522%257D%257D%252C%2522showDevtools%2522%253Atrue%252C%2522showShells%2522%253Atrue%252C%2522showSidebar%2522%253Atrue%252C%2522sidebarPanelSize%2522%253A15%257D';
-        case 'fortnite.':
+      case 'fortnite.':
         return 'Fortnite...html';
-         case 'HTML':
+      case 'HTML':
         return 'https://learn-seven-omega.vercel.app';
-        case 'spotify':
+      case 'spotify':
         return 'https://spotify-one-zeta-26.vercel.app';
-        case 'ashjrfsakjdfnas':
+      case 'ashjrfsakjdfnas':
         return 'came.html';
-      
-                // Add more as needed r man (so the case thing is code and the return thing is the url for it to frame. not all urls work because of xframe options but most will.)
       default:
         return null;
     }
   }
   
-  function toggleFullscreen() {
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
+  function toggleTextboxContainer() {
+    if (textboxContainer.style.top === '20px') {
+      textboxContainer.style.top = '-60px';
+      dropdownButton.textContent = '▲';
     } else {
-      iframeContainer.requestFullscreen().catch(err => {
-        console.error('Failed to enter fullscreen mode:', err);
-      });
+      textboxContainer.style.top = '20px';
+      dropdownButton.textContent = '▼';
     }
   }
 </script>
