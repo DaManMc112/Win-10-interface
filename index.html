@@ -41,7 +41,7 @@
       display: flex;
       gap: 8px;
     }
-    #dropdown-button, #home-button {
+    #dropdown-button, #home-button, #discord-button {
       cursor: pointer;
       background-color: #1d4ed8;
       color: white;
@@ -62,13 +62,12 @@
 <div id="textbox-container" class="flex space-x-2">
   <input type="text" id="urlInput" placeholder="Enter code" class="p-2 border border-gray-300 rounded">
   <button onclick="openFullscreenIframe()" class="bg-blue-500 text-white p-2 rounded">Go</button>
-
 </div>
 
 <div id="controls-container">
   <div id="home-button" onclick="resetIframe()"><i class="fas fa-home"></i></div>
   <div id="dropdown-button" onclick="toggleTextboxContainer()">▼</div>
-
+  <div id="discord-button" onclick="redirectToDiscord()"><i class="fab fa-discord"></i></div>
 </div>
 
 <script>
@@ -90,7 +89,7 @@
     
     if (url) {
       iframe.src = url;
-      toggleTextboxContainer(); // hide the textbox container
+      toggleTextboxContainer(); // Hide the textbox container
     } else {
       alert('Invalid URL code');
     }
@@ -158,9 +157,9 @@
         return 'https://spotify-one-zeta-26.vercel.app';
       case 'ashjrfsakjdfnas':
         return 'came.html';
-         case 'winex':
+      case 'winex':
         return 'winex.html';
-         case 'Discord':
+      case 'Discord':
         return 'discord.html';
       default:
         return null;
@@ -179,6 +178,10 @@
 
   function resetIframe() {
     iframe.src = '';
+  }
+
+  function redirectToDiscord() {
+    window.location.href = 'https://discord.gg/7gP6zBqPz4';
   }
 </script>
 
