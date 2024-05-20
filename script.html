@@ -2,56 +2,57 @@
 <html lang="en">
   <style>
     body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-background-color:white;
-}
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
 
-#editor-container {
-    display: flex;
-    width: 80%;
-    margin: 20px 0;
-}
+    #editor-container {
+      display: flex;
+      width: 80%;
+      margin: 20px 0;
+    }
 
-#line-numbers {
-    background-color: black;
-    padding: 10px;
-    text-align: right;
-    user-select: none;
-  color:white;
-  border-radius:0px;
-  border:none;
-}
+    #line-numbers {
+      background-color: black;
+      padding: 10px;
+      text-align: right;
+      user-select: none;
+      color: white;
+      border-radius: 0px;
+      border: none;
+    }
 
-#code-editor {
-    width: 100%;
-    height: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-left: none;
-    font-family: monospace;
-  background-color:black;
-  color:white;
-}
+    #code-editor {
+      width: 100%;
+      height: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-left: none;
+      font-family: monospace;
+      background-color: black;
+      color: white;
+    }
 
-#run-button {
-    padding: 10px 20px;
-    font-size: 16px;
-  background-color:white;
-  border:none;
-  cursor:pointer;
-}
+    #run-button {
+      padding: 10px 20px;
+      font-size: 50px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
 
-    </style>
+    }
+  </style>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Editor</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://kit.fontawesome.com/654d1ab32f.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="editor-container">
@@ -61,36 +62,34 @@ background-color:white;
         placeholder="Write you HTML/CSS/JS code here..."
       ></textarea>
     </div>
-    <button id="run-button">Run</button>
+    <button id="run-button"><i class="fa-solid fa-eject fa-beat-fade" style="color: #63E6BE;"></i></i></buton>
 
     <script src="script.js"></script>
   </body>
-  
-  
-  
-  
 </html>
 <script>
-  const codeEditor = document.getElementById('code-editor');
-const lineNumbers = document.getElementById('line-numbers');
-const runButton = document.getElementById('run-button');
+  const codeEditor = document.getElementById("code-editor");
+  const lineNumbers = document.getElementById("line-numbers");
+  const runButton = document.getElementById("run-button");
 
-const updateLineNumbers = () => {
-    const lines = codeEditor.value.split('\n').length;
-    lineNumbers.innerHTML = Array(lines).fill(0).map((_, i) => i + 1).join('<br>');
-};
+  const updateLineNumbers = () => {
+    const lines = codeEditor.value.split("\n").length;
+    lineNumbers.innerHTML = Array(lines)
+      .fill(0)
+      .map((_, i) => i + 1)
+      .join("<br>");
+  };
 
-codeEditor.addEventListener('input', updateLineNumbers);
+  codeEditor.addEventListener("input", updateLineNumbers);
 
-runButton.addEventListener('click', () => {
+  runButton.addEventListener("click", () => {
     const code = codeEditor.value;
     const newWindow = window.open();
     newWindow.document.open();
     newWindow.document.write(code);
     newWindow.document.close();
-});
+  });
 
-// Initialize line numbers on page load
-updateLineNumbers();
-
-  </script>
+  // Initialize line numbers on page load
+  updateLineNumbers();
+</script>
