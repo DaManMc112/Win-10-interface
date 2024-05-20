@@ -23,11 +23,17 @@
             padding: 10px;
             overflow: auto;
         }
+        #splitter {
+            width: 15px;
+            background-color: #ddd;
+            cursor: ew-resize;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
 </head>
 <body>
     <div id="editor"></div>
+    <div id="splitter"></div>
     <iframe id="preview"></iframe>
 
     <script>
@@ -63,6 +69,31 @@
         });
 
         updatePreview();
+
+        const splitter = document.getElementById('splitter');
+        let isDragging = false;
+
+        splitter.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                const offsetRight = document.body.offsetWidth - (e.clientX);
+                const editorWidth = e.clientX;
+                const previewWidth = offsetRight - splitter.offsetWidth;
+                document.getElementById('editor').style.width = editorWidth + 'px';
+                document.getElementById('preview').style.width = previewWidth + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (isDragging) {
+                isDragging = false;
+                document.body.style.cursor = 'default';
+            }
+        });
     </script>
 </body>
 </html>
