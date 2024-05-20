@@ -1,95 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-      background-color: white;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        #editor {
+            width: 50%;
+            height: 100%;
+        }
+        #preview {
+            width: 50%;
+            height: 100%;
+            border-left: 2px solid #ddd;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
+</head>
+<body>
+    <div id="editor"></div>
+    <iframe id="preview"></iframe>
 
-    #editor-container {
-      display: flex;
-      width: 80%;
-      margin: 20px 0;
-    }
+    <script>
+        const editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/html");
 
-    #line-numbers {
-      background-color: black;
-      padding: 10px;
-      text-align: right;
-      user-select: none;
-      color: white;
-      border-radius: 0px;
-      border: none;
-    }
+        const defaultContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Win</title>
+</head>
+<body>
 
-    #code-editor {
-      width: 100%;
-      height: 300px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-left: none;
-      font-family: monospace;
-      background-color: black;
-      color: white;
-    }
+</body>
+</html>`;
+        editor.setValue(defaultContent, 1);
 
-    #run-button {
-      padding: 10px 20px;
-      font-size: 50px;
-      background-color: white;
-      border: none;
-      cursor: pointer;
+        const preview = document.getElementById('preview');
 
-    }
-  </style>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Editor</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://kit.fontawesome.com/654d1ab32f.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div id="editor-container">
-      <div id="line-numbers"></div>
-      <textarea
-        id="code-editor"
-        placeholder="Write you HTML/CSS/JS code here..."
-      ></textarea>
-    </div>
-    <button id="run-button"><i class="fa-solid fa-eject fa-beat-fade" style="color: #63E6BE;"></i></i></buton>
+        function updatePreview() {
+            const code = editor.getValue();
+            const previewDocument = preview.contentDocument || preview.contentWindow.document;
+            previewDocument.open();
+            previewDocument.write(code);
+            previewDocument.close();
+        }
 
-    <script src="script.js"></script>
-  </body>
+        editor.session.on('change', function() {
+            updatePreview();
+        });
+
+        updatePreview();
+    </script>
+</body>
 </html>
-<script>
-  const codeEditor = document.getElementById("code-editor");
-  const lineNumbers = document.getElementById("line-numbers");
-  const runButton = document.getElementById("run-button");
-
-  const updateLineNumbers = () => {
-    const lines = codeEditor.value.split("\n").length;
-    lineNumbers.innerHTML = Array(lines)
-      .fill(0)
-      .map((_, i) => i + 1)
-      .join("<br>");
-  };
-
-  codeEditor.addEventListener("input", updateLineNumbers);
-
-  runButton.addEventListener("click", () => {
-    const code = codeEditor.value;
-    const newWindow = window.open();
-    newWindow.document.open();
-    newWindow.document.write(code);
-    newWindow.document.close();
-  });
-
-  // Initialize line numbers on page load
-  updateLineNumbers();
-</script>
