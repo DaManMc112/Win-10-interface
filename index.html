@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://kit.fontawesome.com/654d1ab32f.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,7 @@
       display: flex;
       gap: 8px;
     }
-    #dropdown-button, #home-button, #discord-button, #tos-button {
+    #dropdown-button, #home-button, #discord-button, #tos {
       cursor: pointer;
       background-color: #1d4ed8;
       color: white;
@@ -50,6 +51,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    #tos {
+    
     }
   </style>
 </head>
@@ -64,8 +68,8 @@
   <button onclick="openFullscreenIframe()" class="bg-blue-500 text-white p-2 rounded">Go</button>
 </div>
 
-<div id="controls-container">
-  <div id="tos-button" onclick="redirectTotos()"><i class="fa-regular fa-circle-info"></i></div>
+<div id="controls-container"> 
+  <div id="tos" onclick"redirectToTos()"><i class="fa-solid fa-info" style="color: #ffffff;"></i></div>
   <div id="discord-button" onclick="redirectToDiscord()"><i class="fab fa-discord"></i></div>
   <div id="home-button" onclick="resetIframe()"><i class="fas fa-home"></i></div>
   <div id="dropdown-button" onclick="toggleTextboxContainer()">▼</div>
@@ -164,8 +168,9 @@
         return 'discord.html';
          case 'script':
         return 'script.html';
-      case 'TOS'
-        return'tos.html'
+        case 'TOS':
+        return 'tos.html';
+
       default:
         return null;
     }
@@ -189,6 +194,9 @@
     window.open('https://discord.gg/7gP6zBqPz4', '_blank');
   }
   
+  function redirectToTos(){
+    window.open('tos.html', '_blank')
+  }
 </script>
 
 </body>
