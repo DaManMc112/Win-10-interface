@@ -41,7 +41,7 @@
       display: flex;
       gap: 8px;
     }
-    #dropdown-button, #home-button, #discord-button {
+    #dropdown-button, #home-button, #discord-button, #tos-button {
       cursor: pointer;
       background-color: #1d4ed8;
       color: white;
@@ -65,6 +65,7 @@
 </div>
 
 <div id="controls-container">
+  <div id="tos-button" onclick="redirectTotos()"><i class="fa-regular fa-circle-info"></i></div>
   <div id="discord-button" onclick="redirectToDiscord()"><i class="fab fa-discord"></i></div>
   <div id="home-button" onclick="resetIframe()"><i class="fas fa-home"></i></div>
   <div id="dropdown-button" onclick="toggleTextboxContainer()">▼</div>
@@ -163,6 +164,8 @@
         return 'discord.html';
          case 'script':
         return 'script.html';
+      case 'TOS'
+        return'tos.html'
       default:
         return null;
     }
@@ -184,6 +187,10 @@
 
   function redirectToDiscord() {
     window.open('https://discord.gg/7gP6zBqPz4', '_blank');
+  }
+  
+  function redirectTotos() {
+    window.open('tos.html', '_blank')
   }
 </script>
 
