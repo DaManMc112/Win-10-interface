@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    * {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('https://media.discordapp.net/attachments/1226314244476112938/1246672699431063552/image.png?ex=665d3ded&is=665bec6d&hm=0268ea8e6b24528fa57f3bc6ec78dfc8f738fb46444894bef2c800c4e5ec1e56&=&format=webp&quality=lossless');
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .image-container {
+      display: grid;
+      gap: 10px;
+      margin: 20px;
+      width: 90%;
+    }
+
+    img {
+      width: 100%;
+      height: 400px;
+      opacity: 45%;
+      border: 2px solid white;
+                  transition: opacity 0.2s ease;
+    }
+    
+    img:hover {
+      opacity: 80%;
+    }
+
+    @media (min-width: 1000px) {
+            .image-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 999px) {
+            .image-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      img {
+        height: 300px;
+      }
+    }
+    
+    .image-container {
+      padding-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+<h1>Funny Roblox Man...</h1>
+<div class="image-container">
+  <img src="https://media.discordapp.net/attachments/1226314244476112938/1246663811755147316/image.png?ex=665d35a6&is=665be426&hm=49242c998ad60d3fdb82aacf35569ff381fdbe3ccf557be6ebbb1124d18a3e36&=&format=webp&quality=lossless&width=270&height=350">
+  <img src="https://media.discordapp.net/attachments/1226314244476112938/1246670480786854010/image.png?ex=665d3bdc&is=665bea5c&hm=fd271983a42618d74421e5a7d490d0c0fa6c88546f7213ad12a772ba57077b61&=&format=webp&quality=lossless">
+  <img src="https://media.discordapp.net/attachments/1226314244476112938/1246670897683763260/image.png?ex=665d3c40&is=665beac0&hm=2f50dce97f9ee7aa10eb063128ff5321b59bf4fb8244c1019a3c55b8b4746307&=&format=webp&quality=lossless">
+  <img src="https://media.discordapp.net/attachments/1226314244476112938/1246672016824860792/image.png?ex=665d3d4a&is=665bebca&hm=362c5779ccd7093c7a7fe97fc95a867a88c5724c13bf757ad694ead6100b165c&=&format=webp&quality=lossless">
+  <img src="https://media.discordapp.net/attachments/1226314244476112938/1246672048428679268/image.png?ex=665d3d52&is=665bebd2&hm=49b549003a56bff37efe9999575802e24259a18ddfc256a31607f286ad6d5209&=&format=webp&quality=lossless">
+  <img src="https://media.discordapp.net/attachments/1226314244476112938/1246672644003074098/image.png?ex=665d3de0&is=665bec60&hm=f5390859a9f6cd70de56326b94ab86b5c9f8ef40a5a72444d3b56afeca63dcc2&=&format=webp&quality=lossless">
+</div>
+</body>
+</html>
