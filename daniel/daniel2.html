@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma</title>
+    <style>
+        * {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        body {
+            background: white;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+        .image-container img {
+            height: 200px; /* Set a fixed height for all images */
+            width: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Funny Roblox Man x2</h1>
+    <div class="image-container">
+        <img src="https://media.discordapp.net/attachments/1226314244476112938/1246966964082053160/image.png?ex=665e4ffb&is=665cfe7b&hm=7abecc01b7bc82df8aa9dccbc16aa1791b71bae72f202eb1ddcf7b7797fa2af6&=&format=webp&quality=lossless&width=497&height=350" onclick="enlargeImage(this)">
+        <img src="https://media.discordapp.net/attachments/1226314244476112938/1246968254774382701/image.png?ex=665e512f&is=665cffaf&hm=4b7684c425393d210dd366f796c1cdd5cce903fde1d8e56b41733b12c6b4e34a&=&format=webp&quality=lossless&width=507&height=350" onclick="enlargeImage(this)">
+        <img src="https://media.discordapp.net/attachments/1226314244476112938/1246966702684766218/image.png?ex=665e4fbd&is=665cfe3d&hm=6b94d6963f21c4c2c409761408a2ba51c3c106662a078a23de7e49f48f978d1a&=&format=webp&quality=lossless&width=482&height=350" onclick="enlargeImage(this)">
+        <img src="https://media.discordapp.net/attachments/1226314244476112938/1246964046968786984/image.png?ex=665e4d44&is=665cfbc4&hm=ab48bdf32ed2fc29c7778d6e0a9d8a8b5160c3290acd7a9503cb937f12f5e32a&=&format=webp&quality=lossless&width=409&height=350" onclick="enlargeImage(this)">
+        <img src="https://media.discordapp.net/attachments/1226314244476112938/1246964032833847346/image.png?ex=665e4d40&is=665cfbc0&hm=d18fd69cb3491394616d30328912be2dcb48fb26073faeebedf1eb7b3a1ff30e&=&format=webp&quality=lossless&width=463&height=350" onclick="enlargeImage(this)">
+        <img src="https://media.discordapp.net/attachments/1226314244476112938/1246963838897623141/image.png?ex=665e4d12&is=665cfb92&hm=5eec0cc62ccd511bc197e6f57fb08ef71c05eb83ecb40a8bd642e6d466a0ea6e&=&format=webp&quality=lossless" onclick="enlargeImage(this)">
+    </div>
+    <div class="overlay" id="overlay" onclick="closeOverlay()">
+        <img id="overlayImg" src="">
+    </div>
+    <script>
+        function enlargeImage(img) {
+            const overlay = document.getElementById('overlay');
+            const overlayImg = document.getElementById('overlayImg');
+            overlayImg.src = img.src;
+            overlay.classList.add('visible');
+        }
+
+        function closeOverlay() {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.remove('visible');
+        }
+    </script>
+</body>
+</html>
