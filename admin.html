@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1, p {
+            color: #333;
+        }
+        #admin-info {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-screen">
+        <h1>Admin Login</h1>
+        <p>Please enter the password to proceed.</p>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="verify-admin">
+        <h1>Admin Verification</h1>
+        <p>Are you really an admin?</p>
+        <button onclick="confirmAdmin(true)">Yes</button>
+        <button onclick="confirmAdmin(false)">No</button>
+    </div>
+
+    <div id="admin-info">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome to the admin system. Here you can manage your administrative tasks.
+        </p>
+        <h2>Links</h2>
+        <a href="https://win.monkegamer.com" target="_blank">
+        <p>
+            Home
+        </p>
+    </a> <!--This is to make the link tag end.-->
+    <h2>Tasks</h2>
+  <p>Make sure that you do all of thes tasks before you do anything.</p>
+  <ul>
+    <li>Go to website and make sure everything is up to date and make sure everything is working right.</li>
+    <li>Make sure that no one needs help with the website on the discord server.</li>
+    <p>Make sure all of the tasks are done before you do anything after.</p>
+
+
+    </ul>
+    </div>
+
+    <script>
+        const correctPassword = 'Win-admin'; 
+
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === correctPassword) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('verify-admin').style.display = 'block';
+            } else {
+                alert('Incorrect password. Access denied.');
+            }
+        }
+
+        function confirmAdmin(isAdmin) {
+            if (isAdmin) {
+                document.getElementById('verify-admin').style.display = 'none';
+                document.getElementById('admin-info').style.display = 'block';
+            } else {
+                document.body.innerHTML = '<h1>Access Denied</h1><p>You do not have permission to access this area.</p>';
+            }
+        }
+
+        document.getElementById('verify-admin').style.display = 'none';
+    </script>
+</body>
+</html>
