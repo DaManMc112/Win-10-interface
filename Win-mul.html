@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Win Multiplication!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://math.bidoof.app/styles.css">
+</head>
+
+<body id="body" class="bg-light d-flex align-items-center justify-content-center vh-100">
+    <div id="title">Win Multiplication</div>
+    <div id="quiz-container" class="card p-5">
+        <h1 id="question" class="card-title mb-4"></h1>
+        <input type="text" id="answerBox" class="form-control mb-3" placeholder="Type your answer" oninput="changeInputType(this)">
+        <button class="submit-btn btn btn-primary mb-3" onclick="checkAnswer()">Submit</button>
+        <div id="correctAnswer" class="alert alert-success d-none">Correct!</div>
+        <div id="incorrectAnswer" class="alert alert-danger d-none">Incorrect! The correct answer was <span id="correctNumber"></span>.</div>
+        <div id="streak" class="streak">Streak: <span id="streakCount">0</span></div>
+        <div id="leaderboard" class="mt-4">
+            <h3>Leaderboard</h3>
+            <ul id="leaderboardList" class="list-group"></ul>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion;
+        let num1, num2;
+        let streakCount = 0;
+        let leaderboard = [];
+
+        function generateRandomQuestion() {
+            num1 = Math.floor(Math.random() * 12) + 1;
+            num2 = Math.floor(Math.random() * 12) + 1;
+            currentQuestion = num1 * num2;
+            return num1 + ' x ' + num2;
+        }
+
+        function displayQuestion() {
+            let questionElement = document.getElementById('question');
+            questionElement.textContent = generateRandomQuestion();
+        }
+
+        function updateStreak() {
+            streakCount++;
+            document.getElementById('streakCount').textContent = streakCount;
+        }
+
+        function resetStreak() {
+            let playerName = prompt("Enter your name:");
+            if (playerName) {
+                leaderboard.push({ name: playerName, streak: streakCount });
+                updateLeaderboard();
+            }
+            streakCount = 0;
+            document.getElementById('streakCount').textContent = streakCount;
+        }
+
+        function checkAnswer() {
+            let answerBox = document.getElementById('answerBox');
+            let answer = answerBox.value.trim().toLowerCase();
+            let correctAnswerElement = document.getElementById('correctAnswer');
+            let incorrectAnswerElement = document.getElementById('incorrectAnswer');
+            let correctNumberElement = document.getElementById('correctNumber');
+
+            let numericAnswer = parseInt(answer, 10);
+
+            if (!isNaN(numericAnswer) && numericAnswer === currentQuestion) {
+                correctAnswerElement.classList.remove('d-none');
+                incorrectAnswerElement.classList.add('d-none');
+                answerBox.value = '';
+                displayQuestion();
+                updateStreak();
+            } else {
+                correctNumberElement.textContent = `${num1 * num2}`;
+                incorrectAnswerElement.classList.remove('d-none');
+                correctAnswerElement.classList.add('d-none');
+                answerBox.value = '';
+                displayQuestion();
+                resetStreak();
+            }
+        }
+
+        function updateLeaderboard() {
+            leaderboard.sort((a, b) => b.streak - a.streak);
+            let leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = '';
+            leaderboard.forEach((player, index) => {
+                let listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = `${index + 1}. ${player.name} - Streak: ${player.streak}`;
+                leaderboardList.appendChild(listItem);
+            });
+        }
+
+        document.getElementById('answerBox').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        displayQuestion();
+    </script>
+</body>
+
+</html>
